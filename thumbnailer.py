@@ -146,7 +146,7 @@ def resize_thumbnails(pelican):
 
 def _image_path(pelican):
     return path.join(pelican.settings['PATH'],
-                        pelican.settings.get("IMAGE_PATH", DEFAULT_IMAGE_DIR))
+        pelican.settings.get("IMAGE_PATH", DEFAULT_IMAGE_DIR))
 
 
 def expand_gallery(generator, metadata):
