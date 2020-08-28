@@ -1,1 +1,1 @@
-from .thumbnailer import *
+from .thumbnailer import *  # NOQA
