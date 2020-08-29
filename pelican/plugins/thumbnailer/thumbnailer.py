@@ -144,9 +144,9 @@ def resize_thumbnails(pelican):
     include_regex = pelican.settings.get("THUMBNAIL_INCLUDE_REGEX")
     if include_regex:
         pattern = re.compile(include_regex)
-        is_included = lambda name: pattern.match(name)
+        is_included = lambda name: pattern.match(name)  # NOQA: E731
     else:
-        is_included = lambda name: not name.startswith(".")
+        is_included = lambda name: not name.startswith(".")  # NOQA: E731
 
     sizes = pelican.settings.get("THUMBNAIL_SIZES", DEFAULT_THUMBNAIL_SIZES)
     resizers = dict((k, Resizer(k, v, in_path)) for k, v in sizes.items())
