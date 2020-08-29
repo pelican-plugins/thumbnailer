@@ -201,7 +201,6 @@ def expand_gallery(generator, metadata):
     in_path = path.join(base_path, metadata["gallery"])
     template = generator.settings.get("GALLERY_TEMPLATE", DEFAULT_TEMPLATE)
     thumbnail_name = generator.settings.get("GALLERY_THUMBNAIL", DEFAULT_GALLERY_THUMB)
-    thumbnail_prefix = generator.settings.get("")
     resizer = Resizer(thumbnail_name, "?x?", base_path)
     for dirpath, _, filenames in os.walk(in_path):
         for filename in filenames:
