@@ -22,12 +22,12 @@ DEFAULT_THUMBNAIL_SIZES = {
     "thumbnail_wide": "150x?",
     "thumbnail_tall": "?x150",
 }
-DEFAULT_TEMPLATE = """<a href="{url}" rel="shadowbox" title="{filename}"><img src="{thumbnail}" alt="{filename}"></a>"""
+DEFAULT_TEMPLATE = """<a href="{url}" rel="shadowbox" title="{filename}"><img src="{thumbnail}" alt="{filename}"></a>"""  # noqa: E501
 DEFAULT_GALLERY_THUMB = "thumbnail_square"
 
 
 class Resizer(object):
-    """ Resizes based on a text specification, see readme """
+    """Resizes based on a text specification, see readme"""
 
     REGEX = re.compile(r"(\d+|\?)x(\d+|\?)")
 
@@ -102,10 +102,10 @@ class Resizer(object):
         return "{0}_{1}{2}".format(basename, self._name, ext)
 
     def resize_file_to(self, in_path, out_path, keep_filename=False):
-        """ Given a filename, resize and save the image per the specification into out_path
+        """Given a filename, resize and save the image per the specification into out_path
 
-        :param in_path: path to image file to save.  Must be supported by PIL
-        :param out_path: path to the directory root for the outputted thumbnails to be stored
+        :param in_path: Path to image file to save. Must be supported by PIL.
+        :param out_path: Path to directory root for outputted thumbnails to be stored.
         :return: None
         """
         if keep_filename:
@@ -130,7 +130,7 @@ class Resizer(object):
 
 
 def resize_thumbnails(pelican):
-    """ Resize a directory tree full of images into thumbnails
+    """Resize a directory tree full of images into thumbnails
 
     :param pelican: The pelican instance
     :return: None
@@ -188,7 +188,7 @@ def _image_path(pelican):
 
 
 def expand_gallery(generator, metadata):
-    """ Expand a gallery tag to include all of the files in a specific directory under IMAGE_PATH
+    """Expand a gallery tag to include all files in a specific directory under IMAGE_PATH
 
     :param pelican: The pelican instance
     :return: None
@@ -219,7 +219,11 @@ def expand_gallery(generator, metadata):
                     thumbnail,
                 ).replace("\\", "/")
                 lines.append(
-                    template.format(filename=filename, url=url, thumbnail=thumbnail,)
+                    template.format(
+                        filename=filename,
+                        url=url,
+                        thumbnail=thumbnail,
+                    )
                 )
     metadata["gallery_content"] = "\n".join(lines)
 
