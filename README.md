@@ -1,7 +1,7 @@
 Thumbnailer: A Plugin for Pelican
 =================================
 
-[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/thumbnailer/build)](https://github.com/pelican-plugins/thumbnailer/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-thumbnailer)](https://pypi.org/project/pelican-thumbnailer/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/thumbnailer/main.yml?branch=main)](https://github.com/pelican-plugins/thumbnailer/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-thumbnailer)](https://pypi.org/project/pelican-thumbnailer/)
 
 Thumbnailer is a Pelican plugin that creates thumbnails for all of the images found under a specific directory, in various thumbnail sizes.
 
