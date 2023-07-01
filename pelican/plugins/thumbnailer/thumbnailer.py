@@ -94,7 +94,7 @@ class Resizer(object):
         # Find the partial path + filename beyond the input image directory.
         prefix = path.commonprefix([in_path, self._root])
         new_filename = in_path[len(prefix) :]
-        if new_filename.startswith("/"):
+        if new_filename.startswith(os.path.sep):
             new_filename = new_filename[1:]
 
         # Generate the new filename.
