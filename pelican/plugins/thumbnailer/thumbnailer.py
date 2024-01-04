@@ -1,6 +1,6 @@
 import logging
 import os
-import os.path as path
+from os import path
 import re
 
 from pelican import signals
@@ -26,8 +26,8 @@ DEFAULT_TEMPLATE = """<a href="{url}" rel="shadowbox" title="{filename}"><img sr
 DEFAULT_GALLERY_THUMB = "thumbnail_square"
 
 
-class Resizer(object):
-    """Resizes based on a text specification, see readme"""
+class Resizer:
+    """Resizes based on a text specification, see README."""
 
     REGEX = re.compile(r"(\d+|\?)x(\d+|\?)")
 
@@ -41,8 +41,7 @@ class Resizer(object):
         return image
 
     def _exact_resize(self, w, h, image):
-        retval = ImageOps.fit(image, (w, h), Image.BICUBIC)
-        return retval
+        return ImageOps.fit(image, (w, h), Image.BICUBIC)
 
     def _aspect_resize(self, w, h, image):
         retval = image.copy()
@@ -87,7 +86,7 @@ class Resizer(object):
                 targeth = int(tmph)
                 resizer = self._exact_resize
 
-        logger.debug("Using resizer {0}".format(resizer.__name__))
+        logger.debug(f"Using resizer {resizer.__name__}")
         return resizer(targetw, targeth, image)
 
     def get_thumbnail_name(self, in_path):
@@ -99,10 +98,10 @@ class Resizer(object):
 
         # Generate the new filename.
         (basename, ext) = path.splitext(new_filename)
-        return "{0}_{1}{2}".format(basename, self._name, ext)
+        return f"{basename}_{self._name}{ext}"
 
     def resize_file_to(self, in_path, out_path, keep_filename=False):
-        """Given a filename, resize and save the image per the specification into out_path
+        """Given a filename, resize & save the image per the spec into out_path.
 
         :param in_path: Path to image file to save. Must be supported by PIL.
         :param out_path: Path to directory root for outputted thumbnails to be stored.
@@ -120,17 +119,15 @@ class Resizer(object):
                 image = Image.open(in_path)
                 thumbnail = self.resize(image)
                 thumbnail.save(filename)
-                logger.info("Generated Thumbnail {0}".format(path.basename(filename)))
-            except IOError:
+                logger.info(f"Generated Thumbnail {path.basename(filename)}")
+            except OSError:
                 logger.info(
-                    "Generating Thumbnail for {0} skipped".format(
-                        path.basename(filename)
-                    )
+                    f"Generating Thumbnail for {path.basename(filename)} skipped"
                 )
 
 
 def resize_thumbnails(pelican):
-    """Resize a directory tree full of images into thumbnails
+    """Resize a directory tree full of images into thumbnails.
 
     :param pelican: The pelican instance
     :return: None
@@ -169,7 +166,7 @@ def get_out_path(pelican, in_path, in_filename, name):
         pelican.settings["OUTPUT_PATH"],
         pelican.settings.get("THUMBNAIL_DIR", DEFAULT_THUMBNAIL_DIR),
     )
-    logger.debug("Processing thumbnail {0}=>{1}".format(in_filename, name))
+    logger.debug(f"Processing thumbnail {in_filename}=>{name}")
     if pelican.settings.get("THUMBNAIL_KEEP_NAME", False):
         if pelican.settings.get("THUMBNAIL_KEEP_TREE", False):
             return path.join(
@@ -188,7 +185,7 @@ def _image_path(pelican):
 
 
 def expand_gallery(generator, metadata):
-    """Expand a gallery tag to include all files in a specific directory under IMAGE_PATH
+    """Expand a gallery tag to include all files in a directory under IMAGE_PATH.
 
     :param pelican: The pelican instance
     :return: None
@@ -211,7 +208,7 @@ def expand_gallery(generator, metadata):
                     generator.settings.get("IMAGE_PATH", DEFAULT_IMAGE_DIR),
                     url,
                 ).replace("\\", "/")
-                logger.debug("GALLERY: {0}".format(url))
+                logger.debug(f"GALLERY: {url}")
                 thumbnail = resizer.get_thumbnail_name(filename)
                 thumbnail = path.join(
                     "/",
