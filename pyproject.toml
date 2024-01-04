@@ -1,6 +1,6 @@
 [project]
 name = "pelican-thumbnailer"
-version = "1.0.0"
+version = "1.0.1"
 description = "Thumbnailer is a Pelican plugin creates smaller versions of images found in a directory"
 authors = [
     {name = "Justin Mayer", email = "entroP@gmail.com"},
