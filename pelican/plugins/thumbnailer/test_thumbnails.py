@@ -2,6 +2,7 @@ import os
 from unittest import TestCase, main
 
 from PIL import Image
+
 from thumbnailer import Resizer
 
 
