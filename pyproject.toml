@@ -62,7 +62,8 @@ source-includes = [
     "CHANGELOG.md",
     "CONTRIBUTING.md",
 ]
-excludes = ["**/test_data/**"]
+includes = ["pelican/"]
+excludes = ["**/test_data/**", "tasks.py"]
 
 [tool.autopub]
 project-name = "Thumbnailer"
