@@ -1,7 +1,8 @@
 Thumbnailer: A Plugin for Pelican
 =================================
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/thumbnailer/main.yml?branch=main)](https://github.com/pelican-plugins/thumbnailer/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-thumbnailer)](https://pypi.org/project/pelican-thumbnailer/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/thumbnailer/main.yml?branch=main)](https://github.com/pelican-plugins/thumbnailer/actions)
+[![PyPI Version](https://img.shields.io/pypi/v/pelican-thumbnailer)](https://pypi.org/project/pelican-thumbnailer/)
 
 Thumbnailer is a Pelican plugin that creates thumbnails for all of the images found under a specific directory, in various thumbnail sizes.
 
@@ -14,6 +15,8 @@ This plugin can be installed via:
     python -m pip install pelican-thumbnailer
 
 [Pillow](https://pillow.readthedocs.io/) will be automatically installed in order to resize the images, and the thumbnail will only be re-built if it doesn't already exist (to save processing time). Depending on your local environment and your image types, you may need to also install [external libraries](https://pillow.readthedocs.io/en/stable/installation.html#external-libraries) to add support for certain image file formats.
+
+As long as you have not explicitly added a `PLUGINS` setting to your Pelican settings file, then the newly-installed plugin should be automatically detected and enabled. Otherwise, you must add `thumbnailer` to your existing `PLUGINS` list. For more information, please see the [How to Use Plugins](https://docs.getpelican.com/en/latest/plugins.html#how-to-use-plugins) documentation.
 
 
 Configuration
@@ -35,7 +38,8 @@ Sizes can be specified using any of the following formats:
 * `s` is a shorthand for `wxh` where `w=h`
 
 
-## Contributing
+Contributing
+------------
 
 Contributions are welcome and much appreciated. Every little bit helps. You can contribute by improving the documentation, adding missing features, and fixing bugs. You can also help out by reviewing and commenting on [existing issues][].
 
